@@ -59,3 +59,18 @@ V `pom.xml` jsou nastavene dva profily (_dev_, _prod_) odkazujici na `applicatio
 ```sh
 ./mvnw spring-boot:run -Pprod
 ```
+
+## Pristup k API dokumentaci a Swagger UI
+
+- Swagger UI je dostupny na adrese:
+  - http://localhost:8080/swagger-ui/index.html
+- OpenAPI dokumentace je dostupna na adrese:
+  - http://localhost:8080/v3/api-docs
+
+V profilu pro produkcni prostredi je Swagger UI a API doc vypnuto.
+
+`application-prod.properties`:
+```properties
+springdoc.api-docs.enabled=false
+springdoc.swagger-ui.enabled=false
+```
