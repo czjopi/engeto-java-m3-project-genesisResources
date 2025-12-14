@@ -32,7 +32,7 @@ CREATE TABLE user (
 
 ## Nastaveni aplikace a environment variables
 
-Aplikace pouziva pro pripojeni k databazi environment promenne. Muzete je nastavit primo v shellu, nebo vytvorit soubor `.env` v rootu projektu:
+Aplikace pouziva pro pripojeni k databazi environment promenne. Muzete je nastavit primo v shellu, nebo vytvorit soubor `.env` v rootu projektu. A ten pak nacist `source .env`.
 
 **Priklad `.env` souboru:**
 
@@ -44,3 +44,18 @@ export MYSQL_PASSWORD=<password>
 
 Pokud spoustite aplikaci primo, promenne nastavte pred startem. Pri pouziti docker-compose pridejte do sekce `environment` v compose.yml.
 
+## Spusteni aplikace s Maven profily
+
+V `pom.xml` jsou nastavene dva profily (_dev_, _prod_) odkazujici na `application-dev.properties` a `application-prod.properties`. Spolecna konfigurace je v `application.properties`.
+
+### Vyvoj (default)
+
+```sh
+./mvnw spring-boot:run
+```
+
+### Produkce
+
+```sh
+./mvnw spring-boot:run -Pprod
+```
