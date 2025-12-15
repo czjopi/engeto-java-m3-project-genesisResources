@@ -1,0 +1,151 @@
+meta {
+  name: Get all users
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/users
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~detail: true
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example - Get all users - short
+  
+  request: {
+    url: {{base_url}}/users
+    method: GET
+    mode: none
+    params:query: {
+      ~detail: true
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": 1,
+            "name": "Ferda",
+            "surname": "Mravenec"
+          },
+          {
+            "id": 2,
+            "name": "Brouk",
+            "surname": "Pytlik"
+          }
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Get all users - detailed
+  
+  request: {
+    url: {{base_url}}/users?detail=true
+    method: GET
+    mode: none
+    params:query: {
+      detail: true
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": 1,
+            "name": "Ferda",
+            "surname": "Mravenec",
+            "personId": "jXa4g3H7oPq2",
+            "uuid": "3664e104-516d-4653-ac9e-39581e030b94"
+          },
+          {
+            "id": 2,
+            "name": "Brouk",
+            "surname": "Pytlik",
+            "personId": "yB9fR6tK0wLm",
+            "uuid": "b7e2c1a2-1f2b-4e3c-8d9f-123456789abc"
+          }
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Get all users - empty
+  
+  request: {
+    url: {{base_url}}/users
+    method: GET
+    mode: none
+    params:query: {
+      ~detail: true
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        []
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Get all users - error
+  
+  request: {
+    url: {{base_url}}/users
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "An unexpected error occurred." }
+      '''
+    }
+  }
+}

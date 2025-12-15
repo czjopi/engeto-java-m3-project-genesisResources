@@ -1,0 +1,123 @@
+meta {
+  name: Update an user
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{base_url}}/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 0,
+    "name": "<name>",
+    "surname": "<surname>"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example - Update third user
+  
+  request: {
+    url: {{base_url}}/users
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "id": 3,
+        "name": "Beruska",
+        "surname": "Srdenkova"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 3,
+          "name": "Beruska",
+          "surname": "Srdenkova",
+          "personId": "cN1vZ8pE5sYx",
+          "uuid": "e2f1d3c4-7b8a-4c5d-9e0f-abcdef123456"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Update user - not found
+  
+  request: {
+    url: {{base_url}}/users
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "id": 999,
+        "name": "Neexistujici",
+        "surname": "Uzivatel"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "User with id 999 not found." }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Update user - validation error
+  
+  request: {
+    url: {{base_url}}/users
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "id": "",
+        "name": "",
+        "surname": "Uzivatel"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "Validation failed: id - ID must not be blank; name - Name must not be blank; " }
+      '''
+    }
+  }
+}

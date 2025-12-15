@@ -1,0 +1,123 @@
+meta {
+  name: Get user by ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/users/:id
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~detail: true
+}
+
+params:path {
+  id: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example - Get user by ID short
+  
+  request: {
+    url: {{base_url}}/users/:id
+    method: GET
+    mode: none
+    params:query: {
+      ~detail: true
+    }
+  
+    params:path: {
+      id: 1
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 1,
+          "name": "Ferda",
+          "surname": "Mravenec"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Get user by ID detailed
+  
+  request: {
+    url: {{base_url}}/users/:id?detail=true
+    method: GET
+    mode: none
+    params:query: {
+      detail: true
+    }
+  
+    params:path: {
+      id: 1
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 1,
+          "name": "Ferda",
+          "surname": "Mravenec",
+          "personId": "jXa4g3H7oPq2",
+          "uuid": "3664e104-516d-4653-ac9e-39581e030b94"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Get user by ID - not found
+  
+  request: {
+    url: {{base_url}}/users/:id
+    method: GET
+    mode: none
+    params:path: {
+      id: 999
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "User with id 999 not found." }
+      '''
+    }
+  }
+}

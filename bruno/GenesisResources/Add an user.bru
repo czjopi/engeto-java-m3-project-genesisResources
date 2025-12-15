@@ -1,0 +1,196 @@
+meta {
+  name: Add an user
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "<name>",
+    "surname": "<surname>",
+    "personId": "<personId>"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example - Create first user
+  
+  request: {
+    url: {{base_url}}/users
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "name": "Ferda",
+        "surname": "Mravenec",
+        "personId": "jXa4g3H7oPq2"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 1,
+          "name": "Ferda",
+          "surname": "Mravenec",
+          "personId": "jXa4g3H7oPq2",
+          "uuid": "3664e104-516d-4653-ac9e-39581e030b94"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Create second user
+  
+  request: {
+    url: {{base_url}}/users
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "name": "Brouk",
+        "surname": "Pytlik",
+        "personId": "yB9fR6tK0wLm"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 2,
+          "name": "Brouk",
+          "surname": "Pytlik",
+          "personId": "yB9fR6tK0wLm",
+          "uuid": "b7e2c1a2-1f2b-4e3c-8d9f-123456789abc"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Create third user
+  
+  request: {
+    url: {{base_url}}/users
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "name": "Beruska",
+        "personId": "cN1vZ8pE5sYx"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 3,
+          "name": "Beruska",
+          "surname": null,
+          "personId": "cN1vZ8pE5sYx",
+          "uuid": "e2f1d3c4-7b8a-4c5d-9e0f-abcdef123456"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Create user - duplicate personId
+  
+  request: {
+    url: {{base_url}}/users
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "name": "Ferda",
+        "surname": "Mravenec",
+        "personId": "jXa4g3H7oPq2"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 409
+      text: Conflict
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "User with the same personID already exists." }
+      '''
+    }
+  }
+}
+
+example {
+  name: example - Create user - validation error
+  
+  request: {
+    url: {{base_url}}/users
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "name": "",
+        "surname": "Mravenec",
+        "personId": "short"
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: json
+      content: '''
+        { "message": "Validation failed: name - Name must not be blank; personId - Person ID must be exactly 12 characters long; " }
+      '''
+    }
+  }
+}

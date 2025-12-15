@@ -1,0 +1,64 @@
+meta {
+  name: Delete an user
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{base_url}}/users/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id:
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example - Delete user by ID
+  request: {
+    url: {{base_url}}/users/:id
+    method: DELETE
+    mode: none
+    params:path: {
+      id: 1
+    }
+  }
+  response: {
+    status: {
+      code: 204
+      text: No Content
+    }
+    body: {
+      type: text
+      content: ''''''
+    }
+  }
+}
+
+example {
+  name: example - Delete user - not found
+  request: {
+    url: {{base_url}}/users/:id
+    method: DELETE
+    mode: none
+    params:path: {
+      id: 999
+    }
+  }
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+    body: {
+      type: json
+      content: '''{ "message": "User with id 999 not found." }'''
+    }
+  }
+}
