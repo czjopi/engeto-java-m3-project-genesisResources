@@ -1,0 +1,720 @@
+{
+  "info": {
+    "name": "GenesisResources",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add an user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base_url}}/users",
+          "protocol": "",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<name>\",\n  \"surname\": \"<surname>\",\n  \"personId\": \"<personId>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example - Create first user",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ferda\",\n  \"surname\": \"Mravenec\",\n  \"personId\": \"jXa4g3H7oPq2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Ferda\",\n  \"surname\": \"Mravenec\",\n  \"personId\": \"jXa4g3H7oPq2\",\n  \"uuid\": \"3664e104-516d-4653-ac9e-39581e030b94\"\n}"
+        },
+        {
+          "name": "example - Create second user",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Brouk\",\n  \"surname\": \"Pytlik\",\n  \"personId\": \"yB9fR6tK0wLm\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"id\": 2,\n  \"name\": \"Brouk\",\n  \"surname\": \"Pytlik\",\n  \"personId\": \"yB9fR6tK0wLm\",\n  \"uuid\": \"b7e2c1a2-1f2b-4e3c-8d9f-123456789abc\"\n}"
+        },
+        {
+          "name": "example - Create third user",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beruska\",\n  \"personId\": \"cN1vZ8pE5sYx\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"id\": 3,\n  \"name\": \"Beruska\",\n  \"surname\": null,\n  \"personId\": \"cN1vZ8pE5sYx\",\n  \"uuid\": \"e2f1d3c4-7b8a-4c5d-9e0f-abcdef123456\"\n}"
+        },
+        {
+          "name": "example - Create user - duplicate personId",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ferda\",\n  \"surname\": \"Mravenec\",\n  \"personId\": \"jXa4g3H7oPq2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [],
+          "cookie": [],
+          "body": "{ \"message\": \"User with the same personID already exists.\" }"
+        },
+        {
+          "name": "example - Create user - validation error",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"surname\": \"Mravenec\",\n  \"personId\": \"short\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [],
+          "cookie": [],
+          "body": "{ \"message\": \"Validation failed: name - Name must not be blank; personId - Person ID must be exactly 12 characters long; \" }"
+        }
+      ]
+    },
+    {
+      "name": "Get all users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base_url}}/users",
+          "protocol": "",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users"
+          ],
+          "query": [
+            {
+              "key": "detail",
+              "value": "true"
+            }
+          ],
+          "variable": []
+        }
+      },
+      "response": [
+        {
+          "name": "example - Get all users - short",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "detail",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [],
+          "cookie": [],
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Ferda\",\n    \"surname\": \"Mravenec\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Brouk\",\n    \"surname\": \"Pytlik\"\n  }\n]"
+        },
+        {
+          "name": "example - Get all users - detailed",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users?detail=true",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users?detail=true"
+              ],
+              "query": [
+                {
+                  "key": "detail",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [],
+          "cookie": [],
+          "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Ferda\",\n    \"surname\": \"Mravenec\",\n    \"personId\": \"jXa4g3H7oPq2\",\n    \"uuid\": \"3664e104-516d-4653-ac9e-39581e030b94\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Brouk\",\n    \"surname\": \"Pytlik\",\n    \"personId\": \"yB9fR6tK0wLm\",\n    \"uuid\": \"b7e2c1a2-1f2b-4e3c-8d9f-123456789abc\"\n  }\n]"
+        },
+        {
+          "name": "example - Get all users - empty",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "detail",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [],
+          "cookie": [],
+          "body": "[]"
+        },
+        {
+          "name": "example - Get all users - error",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [],
+          "cookie": [],
+          "body": "{ \"message\": \"An unexpected error occurred.\" }"
+        }
+      ]
+    },
+    {
+      "name": "Update an user",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{base_url}}/users",
+          "protocol": "",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "users"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 0,\n  \"name\": \"<name>\",\n  \"surname\": \"<surname>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example - Update third user",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 3,\n  \"name\": \"Beruska\",\n  \"surname\": \"Srdenkova\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [],
+          "cookie": [],
+          "body": "{\n  \"id\": 3,\n  \"name\": \"Beruska\",\n  \"surname\": \"Srdenkova\",\n  \"personId\": \"cN1vZ8pE5sYx\",\n  \"uuid\": \"e2f1d3c4-7b8a-4c5d-9e0f-abcdef123456\"\n}"
+        },
+        {
+          "name": "example - Update user - not found",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 999,\n  \"name\": \"Neexistujici\",\n  \"surname\": \"Uzivatel\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [],
+          "cookie": [],
+          "body": "{ \"message\": \"User with id 999 not found.\" }"
+        },
+        {
+          "name": "example - Update user - validation error",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"\",\n  \"name\": \"\",\n  \"surname\": \"Uzivatel\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [],
+          "cookie": [],
+          "body": "{ \"message\": \"Validation failed: id - ID must not be blank; name - Name must not be blank; \" }"
+        }
+      ]
+    },
+    {
+      "name": "{id}",
+      "item": [
+        {
+          "name": "Delete an user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{base_url}}/users/:id",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example - Delete user by ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/:id",
+                  "protocol": "",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "example - Delete user - not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/:id",
+                  "protocol": "",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "body": "{ \"message\": \"User with id 999 not found.\" }"
+            }
+          ]
+        },
+        {
+          "name": "Get user by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{base_url}}/users/:id",
+              "protocol": "",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                ":id"
+              ],
+              "query": [
+                {
+                  "key": "detail",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "example - Get user by ID short",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/:id",
+                  "protocol": "",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "key": "detail",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Ferda\",\n  \"surname\": \"Mravenec\"\n}"
+            },
+            {
+              "name": "example - Get user by ID detailed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/:id?detail=true",
+                  "protocol": "",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id?detail=true"
+                  ],
+                  "query": [
+                    {
+                      "key": "detail",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Ferda\",\n  \"surname\": \"Mravenec\",\n  \"personId\": \"jXa4g3H7oPq2\",\n  \"uuid\": \"3664e104-516d-4653-ac9e-39581e030b94\"\n}"
+            },
+            {
+              "name": "example - Get user by ID - not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/users/:id",
+                  "protocol": "",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [],
+              "cookie": [],
+              "body": "{ \"message\": \"User with id 999 not found.\" }"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
