@@ -66,7 +66,7 @@ public class UserService {
      * @param id user ID
      * @return Optional containing UserShortDto if found, otherwise empty
      */
-    public Optional<UserShortDto> getUserByIdShort(int id) {
+    public Optional<UserShortDto> getUserByIdShort(Integer id) {
         log.debug("Fetching user by ID {} in short format", id);
         Optional<User> userOpt = userRepository.findById(id);
         return userOpt.map(UserMapper::toUserShortDto);
@@ -78,7 +78,7 @@ public class UserService {
      * @param id user ID
      * @return Optional containing UserDetailDto if found, otherwise empty
      */
-    public Optional<UserDetailDto> getUserByIdDetail(int id) {
+    public Optional<UserDetailDto> getUserByIdDetail(Integer id) {
         log.debug("Fetching user by ID {} in detail format", id);
         Optional<User> userOpt = userRepository.findById(id);
         return userOpt.map(UserMapper::toUserDetailDto);
@@ -143,7 +143,7 @@ public class UserService {
      * @throws UserNotFoundException if user is not found
      */
     @Transactional
-    public boolean deleteUserById(int id) {
+    public boolean deleteUserById(Integer id) {
         log.debug("Deleting user with ID {}", id);
         userRepository.findById(id).orElseThrow(() -> {
             log.error("User with ID {} not found", id);

@@ -5,15 +5,15 @@ package com.github.czjopi.genesisResources.model;
  * identification data.
  */
 public class UserShortDto implements UserView {
-    private int id;
+    private Integer id;
     private String name;
     private String surname;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

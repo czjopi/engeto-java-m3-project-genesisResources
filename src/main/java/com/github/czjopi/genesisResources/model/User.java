@@ -18,7 +18,7 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     /**
      * User's first name. Must not be blank.
@@ -56,7 +56,7 @@ public class User {
         this.uuid = uuid;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

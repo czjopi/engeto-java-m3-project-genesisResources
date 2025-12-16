@@ -18,6 +18,7 @@ import com.github.czjopi.genesisResources.model.UserUpdateDto;
 import com.github.czjopi.genesisResources.model.UserView;
 import com.github.czjopi.genesisResources.service.UserService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/v1/api")
@@ -30,7 +31,6 @@ public class MainController {
 
     private final UserService userService;
 
-
     /**
      * Constructor for MainController.
      * 
@@ -39,7 +39,6 @@ public class MainController {
     public MainController(UserService userService) {
         this.userService = userService;
     }
-
 
     /**
      * Get all users, either in detail or short form.
@@ -57,7 +56,6 @@ public class MainController {
         }
     }
 
-
     /**
      * Get a user by ID, either in detail or short form.
      * 
@@ -66,7 +64,7 @@ public class MainController {
      * @return user in the requested format, or 404 if not found
      */
     @GetMapping("/users/{id}")
-    public ResponseEntity<? extends UserView> getUserById(@PathVariable int id,
+    public ResponseEntity<? extends UserView> getUserById(@PathVariable @NotNull Integer id,
             @RequestParam(defaultValue = "false") boolean detail) {
         if (detail) {
             return userService.getUserByIdDetail(id).map(ResponseEntity::ok)
@@ -76,7 +74,6 @@ public class MainController {
                     .orElseGet(() -> ResponseEntity.notFound().build());
         }
     }
-
 
     /**
      * Create a new user.
@@ -89,7 +86,6 @@ public class MainController {
         UserDetailDto newUser = userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
-
 
     /**
      * Update an existing user.
@@ -107,7 +103,6 @@ public class MainController {
         }
     }
 
-
     /**
      * Delete a user by ID.
      * 
@@ -115,7 +110,7 @@ public class MainController {
      * @return 204 if deleted, 404 if not found
      */
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         boolean userDeleted = userService.deleteUserById(id);
         if (userDeleted) {
             return ResponseEntity.noContent().build();

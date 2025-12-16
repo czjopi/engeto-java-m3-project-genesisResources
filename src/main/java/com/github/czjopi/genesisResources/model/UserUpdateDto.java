@@ -10,14 +10,14 @@ import jakarta.validation.constraints.Positive;
 public class UserUpdateDto {
     @NotNull(message = "ID must not be blank")
     @Positive(message = "ID must be a positive integer")
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "Name must not be blank")
     private String name;
 
     private String surname;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
