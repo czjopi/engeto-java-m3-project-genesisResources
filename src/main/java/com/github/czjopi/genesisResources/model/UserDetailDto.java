@@ -4,7 +4,7 @@ package com.github.czjopi.genesisResources.model;
  * Data Transfer Object (DTO) representing a detailed version of a user. Contains all identification
  * data.
  */
-public class UserDetailDto {
+public class UserDetailDto implements UserView {
     private int id;
     private String name;
     private String surname;
