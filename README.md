@@ -74,3 +74,7 @@ V profilu pro produkcni prostredi je Swagger UI a API doc vypnuto.
 springdoc.api-docs.enabled=false
 springdoc.swagger-ui.enabled=false
 ```
+
+## Testovani API
+- [Bruno collection](bruno/GenesisResources/)
+- [Postman collection](postman/GenesisResources.json)
