@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import com.github.czjopi.genesisResources.model.ErrorResponseDto;
 
 /**
@@ -59,5 +60,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleJsonParseError(HttpMessageNotReadableException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Invalid JSON input: " + ex.getMostSpecificCause().getMessage());
+    }
+
+    /** Handle NoResourceFoundException. */
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleNoResourceFound(NoResourceFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto("Resource not found: " + ex.getResourcePath()));
     }
 }
