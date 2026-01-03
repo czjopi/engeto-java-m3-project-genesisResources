@@ -1,8 +1,8 @@
 package com.github.czjopi.genesisResources.mapper;
 
+import com.github.czjopi.genesisResources.dto.UserDetailDto;
+import com.github.czjopi.genesisResources.dto.UserShortDto;
 import com.github.czjopi.genesisResources.model.User;
-import com.github.czjopi.genesisResources.model.UserDetailDto;
-import com.github.czjopi.genesisResources.model.UserShortDto;
 
 /**
  * Mapper class for converting User entities to DTOs.

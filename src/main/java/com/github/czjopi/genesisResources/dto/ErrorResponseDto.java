@@ -1,4 +1,4 @@
-package com.github.czjopi.genesisResources.model;
+package com.github.czjopi.genesisResources.dto;
 
 /**
  * Data Transfer Object for error responses.

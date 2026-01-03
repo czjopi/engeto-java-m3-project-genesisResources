@@ -1,4 +1,4 @@
-package com.github.czjopi.genesisResources.model;
+package com.github.czjopi.genesisResources.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

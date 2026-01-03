@@ -1,4 +1,4 @@
-package com.github.czjopi.genesisResources.model;
+package com.github.czjopi.genesisResources.dto;
 
 /** Marker interface for user views */
 public interface UserView {

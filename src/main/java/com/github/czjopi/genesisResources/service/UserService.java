@@ -9,14 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.github.czjopi.genesisResources.dto.UserCreateDto;
+import com.github.czjopi.genesisResources.dto.UserDetailDto;
+import com.github.czjopi.genesisResources.dto.UserShortDto;
+import com.github.czjopi.genesisResources.dto.UserUpdateDto;
 import com.github.czjopi.genesisResources.exception.DuplicatePersonIdException;
 import com.github.czjopi.genesisResources.exception.UserNotFoundException;
 import com.github.czjopi.genesisResources.mapper.UserMapper;
 import com.github.czjopi.genesisResources.model.User;
-import com.github.czjopi.genesisResources.model.UserCreateDto;
-import com.github.czjopi.genesisResources.model.UserDetailDto;
-import com.github.czjopi.genesisResources.model.UserShortDto;
-import com.github.czjopi.genesisResources.model.UserUpdateDto;
 import com.github.czjopi.genesisResources.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
