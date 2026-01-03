@@ -4,36 +4,9 @@ package com.github.czjopi.genesisResources.dto;
  * Data Transfer Object (DTO) representing a detailed version of a user. Contains all identification
  * data.
  */
-public class UserDetailDto implements UserView {
-    private Integer id;
-    private String name;
-    private String surname;
+public class UserDetailDto extends UserShortDto {
     private String personId;
     private String uuid;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public String getPersonId() {
         return personId;

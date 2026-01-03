@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.github.czjopi.genesisResources.dto.UserCreateDto;
 import com.github.czjopi.genesisResources.dto.UserDetailDto;
+import com.github.czjopi.genesisResources.dto.UserShortDto;
 import com.github.czjopi.genesisResources.dto.UserUpdateDto;
-import com.github.czjopi.genesisResources.dto.UserView;
 import com.github.czjopi.genesisResources.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -47,7 +47,7 @@ public class MainController {
      * @return list of users in the requested format
      */
     @GetMapping("/users")
-    public ResponseEntity<List<? extends UserView>> getUsers(
+    public ResponseEntity<List<? extends UserShortDto>> getUsers(
             @RequestParam(defaultValue = "false") boolean detail) {
         if (detail) {
             return ResponseEntity.ok(userService.getAllUsersDetail());
@@ -64,7 +64,7 @@ public class MainController {
      * @return user in the requested format, or 404 if not found
      */
     @GetMapping("/users/{id}")
-    public ResponseEntity<? extends UserView> getUserById(@PathVariable @NotNull Integer id,
+    public ResponseEntity<? extends UserShortDto> getUserById(@PathVariable @NotNull Integer id,
             @RequestParam(defaultValue = "false") boolean detail) {
         if (detail) {
             return userService.getUserByIdDetail(id).map(ResponseEntity::ok)
