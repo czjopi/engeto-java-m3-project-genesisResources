@@ -30,6 +30,8 @@ CREATE TABLE user (
 );
 ```
 
+Pripadne je v [`src/main/resources/samples/genesis-database-example.sql`](src/main/resources/samples/genesis-database-example.sql) dump databaze s testovacimi daty.
+
 ## Nastaveni aplikace a environment variables
 
 Aplikace pouziva pro pripojeni k databazi environment promenne. Muzete je nastavit primo v shellu, nebo vytvorit soubor `.env` v rootu projektu. A ten pak nacist `source .env`.
