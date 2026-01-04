@@ -1,7 +1,9 @@
 package com.github.czjopi.genesisResources.service;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -28,6 +30,8 @@ import jakarta.transaction.Transactional;
 public class UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
+
+    private static final String PERSON_ID_FILE = "samples/dataPersonId.txt";
 
     private final UserRepository userRepository;
 
@@ -98,8 +102,15 @@ public class UserService {
 
         Optional<User> existingUser = userRepository.findByPersonId(user.getPersonId());
         if (existingUser.isPresent()) {
-            log.error("User with the same personID already exists");
-            throw new DuplicatePersonIdException("User with the same personID already exists.");
+            String msg = "User with the same personID already exists.";
+            log.error(msg);
+            throw new DuplicatePersonIdException(msg);
+        }
+
+        if (!isPersonIdValid(user.getPersonId())) {
+            String msg = "PersonID is invalid or does not exist in external system.";
+            log.error(msg);
+            throw new DuplicatePersonIdException(msg);
         }
 
         User newUser = new User();
@@ -152,5 +163,27 @@ public class UserService {
         userRepository.deleteById(id);
         log.info("Deleted user with ID {}", id);
         return true;
+    }
+
+    /**
+     * Validates if the given personId exists in the external system.
+     * 
+     * @param personId
+     * @return true if personId exists in the external system, false otherwise
+     */
+    private boolean isPersonIdValid(String personId) {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(PERSON_ID_FILE);
+                Scanner scanner = new Scanner(is)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                if (line.equals(personId)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error reading " + PERSON_ID_FILE, e);
+        }
+        log.warn("PersonID not found in external system.");
+        return false;
     }
 }
